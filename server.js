@@ -67,5 +67,5 @@ app.get('*', (req, res) => {
  Connect to local server
  ===================================================================*/
 app.listen(8080, ()=> {
-    console.log('Listening on port 8080');
+    console.log('Listening on port 3000');
 });

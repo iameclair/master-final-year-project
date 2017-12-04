@@ -129,7 +129,7 @@ module.exports = (router) => {
                 //search for the user in the db
                 User.findOne({ email: req.body.email }, (err, user) => {
                     if (err){
-                        res.json({ success: flase, message:'failed to login', err});
+                        res.json({ success: false, message:'failed to login', err});
                     } else{
                         if(!user){
                             res.json({success: false, message: 'Email Not found.'})
