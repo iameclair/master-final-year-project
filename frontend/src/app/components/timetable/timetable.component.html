@@ -1,0 +1,45 @@
+ <p-schedule
+    [events]="events"
+    [header]="headerConfig"
+    [slotDuration]="slot"
+    [editable]="true"
+    [timezone]="UTC"
+    (onDayClick)="handleDayClick($event)"
+    (onEventClick)="handleEventClick($event)"
+  ></p-schedule>
+  <p-dialog header="Time Slot" [(visible)]="dialogVisible" [responsive]="true"
+            showEffect="fade" [modal]="false" [contentStyle]="{'overflow':'visible'}"
+            [style]="{'overflow':'visible'}" [resizable]="false">
+    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="event">
+      <h3 style="color: blue" *ngIf="event.id">Details</h3>
+      <h3 *ngIf="!event.id" style="color: blue">Create Appointment</h3>
+      <div>
+        <p>
+          Date: <strong>{{renderDate(event.date)}}</strong></p>
+        <p>
+          Time: <strong>{{renderTime(event.date)}}</strong></p>
+        <p *ngIf="event.id">
+          Create By: <strong>Dr {{firstName}} {{lastName}}</strong></p>
+        <span *ngIf="event.id && !event.status">
+        <i class="fa fa-check-circle" style="color: green"> Available</i></span>
+        <span *ngIf="event.id && event.status">
+        <i class="fa fa-times-circle" style="color: red"> Booked</i></span>
+      </div>
+    </div>
+    <p-footer *ngIf="event">
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button *ngIf="!event.status" type="button" class="btn btn-link" (click)="deleteEvent()">
+          <span><i class="fa fa-trash-o"> Delete</i></span>
+        </button>
+        <button *ngIf="!event.id" type="button" class="btn btn-link" (click)="saveEvent()">
+          <span><i class="fa fa-edit"> Create</i></span>
+        </button>
+      </div>
+      <div class="row show-hide-message">
+        <div [ngClass]="messageClass">
+          {{ message }}
+        </div>
+      </div>
+    </p-footer>
+  </p-dialog>
+

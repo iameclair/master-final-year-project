@@ -1,0 +1,40 @@
+<div class="col-centered col-lg-6 col-lg-offset-3">
+
+  <div class="row show-hide-message">
+    <div [ngClass]="messageClass">
+      {{ message }}
+    </div>
+  </div>
+
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <div class="">
+      <h2>Here is your One Time Password:</h2> <strong>{{ yourOtp }}</strong>
+    </div>
+    <div class="jumbotron">
+      <div class="row">
+        <div class="form-group">
+          <label for="otp" class="col-lg-2">OTP</label>
+          <div class="col-lg-8">
+            <input type="text" name="otp" class="form-control" autocomplete="true" placeholder="One Time Password"
+                   formControlName="otp" id="otp"/>
+            <ul class="help-block">
+              <li *ngIf="form.controls.otp.errors?.required && form.controls.otp.dirty">
+                This field is required
+              </li>
+              <li *ngIf="form.controls.otp.errors?.minlength || form.controls.otp.errors?.maxlength &&
+             form.controls.otp.dirty">
+                the otp should be nine characters long
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="submit-section">
+        <div class="row">
+          <input [disabled]="!form.valid" class="btn btn-success col-lg-8 col-lg-offset-2"
+                 type="submit" value="Login" />
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

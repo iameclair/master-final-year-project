@@ -1,0 +1,122 @@
+
+<div class="row">
+  <div class="show-hide-message col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div [ngClass]="messageClass">
+      {{ message }}
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 form-container">
+  <h3 class="header">Register <span class="glyphicon glyphicon-registration-mark"></span></h3>
+<form [formGroup]="form" (submit)="onRegisterSubmit()">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <div ngClass="{'has-error':(form.controls.email.errors && form.controls.email.dirty) ||
+      (form.errors?.matchingPasswords && form.controls.email.dirty) ||(!emailValid && form.controls.email.dirty),
+     'has-success': (!form.controls.email.errors && !form.errors?.matchingPasswords && emailValid)}">
+      <input type="email" name="email" class="form-control" autocomplete="true" placeholder="example john@gmail.com *"
+              formControlName="email" id="email" (blur)="checkEmail()"/>
+      <ul class="help-block">
+        <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">
+          This field is required
+        </li>
+        <li *ngIf="form.controls.email.errors?.minlength || form.controls.email.errors?.maxlength && form.controls.email.dirty">
+          minimum email length is 5 and maximum email length is 50
+        </li>
+        <li *ngIf="form.controls.email.errors?.validateEmail && form.controls.email.dirty">
+          invalid email address
+        </li>
+        <li *ngIf="emailMessage">{{ emailMessage }}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="firstname">First Name</label>
+    <div ngClass="{'has-error':(form.controls.firstname.errors && form.controls.firstname.dirty),
+     'has-success': (!form.controls.firstname.errors)}">
+      <input type="text" name="fiirstname" class="form-control" autocomplete="true" placeholder="example john *"
+             formControlName="firstname" id="firstname"/>
+      <ul class="help-block">
+        <li *ngIf="form.controls.firstname.errors?.required && form.controls.firstname.dirty">
+          This field is required
+        </li>
+        <li *ngIf="form.controls.firstname.errors?.minlength || form.controls.firstname.errors?.maxlength && form.controls.firstname.dirty">
+          Minimum Character 2, Maxmimum Character 100
+        </li>
+        <li *ngIf="form.controls.firstname.errors?.validateNames && form.controls.firstname.dirty">
+          First Name can not contain any number or special characters
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="middlename">Middle Name</label>
+    <div>
+      <input type="text" name="middlename" class="form-control" autocomplete="false" placeholder="optional"
+             formControlName="middlename" id="middlename"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="lastname">Last Name</label>
+    <div ngClass="{'has-error':(form.controls.lastname.errors && form.controls.lastname.dirty),
+     'has-success': (!form.controls.lastname.errors)}">
+      <input type="text" name="lastname" class="form-control" autocomplete="true" placeholder="example smith *"
+             formControlName="lastname" id="lastname"/>
+      <ul class="help-block">
+        <li *ngIf="form.controls.lastname.errors?.required && form.controls.lastname.dirty">
+          This field is required
+        </li>
+        <li *ngIf="form.controls.lastname.errors?.minlength || form.controls.lastname.errors?.maxlength && form.controls.lastname.dirty">
+          Minimum Character 2, Maxmimum Character 100
+        </li>
+        <li *ngIf="form.controls.lastname.errors?.validateNames && form.controls.lastname.dirty">
+          Last Name can not contain any number or special characters
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password1">Password</label>
+    <div ngClass="{'has-error':(form.controls.password1.errors && form.controls.password1.dirty),
+     'has-success': (!form.controls.password1.errors)}">
+      <input type="password" name="password1" class="form-control" autocomplete="false" placeholder="password *"
+             formControlName="password1" id="password1"/>
+      <ul class="help-block">
+        <li *ngIf="form.controls.password1.errors?.required && form.controls.password1.dirty">
+          This field is required
+        </li>
+        <li *ngIf="form.controls.password1.errors?.minlength || form.controls.password1.errors?.maxlength && form.controls.password1.dirty">
+          Minimum 8 Characters , Maxmimum 35 Characters
+        </li>
+        <li *ngIf="form.controls.password1.errors?.validatePassword && form.controls.password1.dirty">
+          Must contain at least 1 uppercase character, 1 number and 1 special character
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password2">Confirm Password</label>
+    <div ngClass="{'has-error':(form.controls.password2.errors && form.controls.password2.dirty),
+     'has-success': (!form.controls.password2.errors)}">
+      <input type="password" name="password2" class="form-control" autocomplete="false" placeholder="confirm password *"
+             formControlName="password2" id="password2"/>
+      <ul class="help-block">
+        <li *ngIf="form.controls.password2.errors?.required && form.controls.password2.dirty">
+          This field is required
+        </li>
+        <li *ngIf="form.controls.password2.errors?.minlength || form.controls.password2.errors?.maxlength && form.controls.password2.dirty">
+          Minimum 8 Characters , Maxmimum 35 Characters
+        </li>
+        <li *ngIf="form.errors?.matchingPasswords && form.controls.password2.dirty">
+          Passwords do not much
+        </li>
+      </ul>
+    </div>
+  </div>
+  <input [disabled]="!form.valid || processing" type="submit" class="btn btn-success col-lg-10 col-lg-offset-1
+          submit-section" value="Submit" />
+
+</form>
+</div>
+

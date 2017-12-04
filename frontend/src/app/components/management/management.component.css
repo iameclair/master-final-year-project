@@ -1,0 +1,31 @@
+li > a{
+  color: black;
+  text-decoration: none;
+  display: block;
+  font-size: larger;
+}
+li > a:hover{
+ color: #A89447;
+}
+
+li > a:active{
+  color: darkolivegreen;
+}
+
+li > a:visited{
+  background-color: #4289f4;
+}
+.vertical-separator{
+  border-left: 1px solid black;
+}
+
+.sidenavbar > ul > li{
+  display: block;
+  width: 100%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+.sidenavbar > ul > li > a{
+  display: block;
+  width: 100%;
+}

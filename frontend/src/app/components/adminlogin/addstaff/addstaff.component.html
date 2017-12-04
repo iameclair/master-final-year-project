@@ -1,0 +1,41 @@
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h6 class="panel-title">search</h6>
+    </div>
+    <div class="panel-body">
+      <form [formGroup]="form" class="navbar-form navbar-left" role="search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search staff by name" aria-describedby="search-addon"
+                 formControlName="search">
+          <span class="input-group-addon" id="search-addon" (click)="search()" style="background: black; color: #A89447">
+            <i class="fa fa-search" style="color: #A89447"></i>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h6 class="panel-title">List of Staff <span class="badge">{{listOfDoctors.length}}</span></h6>
+    </div>
+    <div class="panel-body">
+
+      <p-dataList [value]="listOfDoctors" [paginator]="true" [rows]="1">
+        <ng-template let-doctor pTemplate="item">
+          <a class="list-group-item">
+            <strong>{{doctor.position}}</strong> {{doctor.first_name}} {{doctor.last_name}}
+            <p><strong>Specialities</strong></p>
+            <ul *ngFor="let speciality of doctor.medicalSpecialities">
+              <li>{{speciality.name}}</li>
+            </ul>
+            <p><strong>{{doctor.email}}</strong></p>
+            <p><a routerLink="/delete-staff/{{doctor._id}}"><i class="fa fa-trash"> Delete</i></a>&nbsp;
+              <a routerLink="/contact-user/{{doctor._id}}"><i class="fa fa-envelope"> Contact</i></a></p>
+          </a>
+        </ng-template>
+      </p-dataList>
+    </div>
+</div>

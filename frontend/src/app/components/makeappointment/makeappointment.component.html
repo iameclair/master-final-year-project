@@ -1,0 +1,22 @@
+<div class="col-lg-5 col-lg-offset-4">
+  <div class="row show-hide-message">
+    <div [ngClass]="messageClass">
+      {{ message }}
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Update Time Slot</h3>
+    </div>
+    <div class="panel-body">
+      <form [formGroup]="form" (submit)="onSubmit()">
+          <div class="form-inline">
+            <h3>Date</h3>
+            <input type="datetime-local" formControlName="date"><br/> <br/>
+            <input [disabled]="!form.valid" class="btn btn-success" type="submit" value="Create" />
+            <input class="btn btn-danger" type="reset" value="Cancel" />
+          </div>
+      </form>
+    </div>
+  </div>
+</div>

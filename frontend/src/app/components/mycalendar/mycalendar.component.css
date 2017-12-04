@@ -1,0 +1,7 @@
+.column-left {
+  width: 160px;
+  float: left;
+}
+.column-main {
+  margin-left: 160px;
+}

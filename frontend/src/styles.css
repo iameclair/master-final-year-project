@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/fullcalendar/dist/fullcalendar.min.css";
+@import url('https://fonts.googleapis.com/css?family=Lobster|Zilla+Slab+Highlight');
+body {
+  font-family: 'Anton', sans-serif;
+  height:100%;
+ /*// padding-top: 70px;*/
+  background-color: whitesmoke;
+}
+.brand-font {
+  font-family: 'Allerta Stencil', sans-serif;
+}
+
+.brand-name{
+  font-family: 'Zilla Slab Highlight', cursive;
+  color: black;
+}
+.brand-slogan{
+  font-family: 'Holtwood One SC', serif;
+  color: goldenrod;
+}
+label{
+  /*color: darkslategrey;
+  text-align: left;*/
+  display: block;
+}
+
+.help-block{
+  color: deeppink;
+}
+.help-block > li{
+  list-style: none;
+  text-align: left;
+}

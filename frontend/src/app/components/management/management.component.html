@@ -1,0 +1,84 @@
+ <div class="col-lg-2 col-md-2 col-sm-12">
+    <div class="row sidenavbar">
+      <ul>
+        <li><a  type="btn btn-link" (click)="managestaff = true" style="cursor: pointer">
+          <span><i class="fa fa-tasks"></i></span> Staff</a>
+        </li>
+        <li><a  type="btn btn-link"  style="cursor: pointer">
+          <span><i class="fa fa-tasks"></i></span> Patient</a></li>
+        <li><a type="btn btn-link" (click)="viewfeedback = true" style="cursor: pointer">
+          <span><i class="fa fa-comments"></i></span> Feedback <span class="badge">
+        500</span></a></li>
+      </ul>
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h6 class="panel-title">FeedBack</h6>
+          </div>
+          <div class="panel-body">
+            <li class="list-group-item">complaint report</li>
+            <li class="list-group-item">issue report</li>
+            <li class="list-group-item">bug found report</li>
+            <li class="list-group-item">complaint report</li>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h6 class="panel-title">Messages</h6>
+          </div>
+          <div class="panel-body">
+            <li class="list-group-item"><a href="#">message sent</a></li>
+            <li class="list-group-item">message received</li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-9 col-md-9 col-sm-12">
+
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12" style="padding: 1%">
+          <h6>users stats</h6>
+          <p-chart type="pie" [data]="numberStats"></p-chart>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12">
+          <h6>appointments stats</h6>
+          <p-chart type="bar" [data]="appointmentStats"></p-chart>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h6 class="panel-title">Patients</h6>
+            </div>
+            <div class="panel-body">
+              <!--<app-managepatient></app-managepatient>-->
+              <app-displaypatients></app-displaypatients>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12" id="staff-block">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h6 class="panel-title">Staff</h6>
+            </div>
+            <div class="panel-body">
+              <app-managestaff></app-managestaff>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="managestaff">
+          <a class="btn btn-link" (click)="managestaff = false"><i class="fa fa-close"> Close</i></a>
+          <app-managestaff></app-managestaff>
+        </div>
+        <div *ngIf="managepatient">
+          <a class="btn btn-link" (click)="managepatient = false"><i class="fa fa-close"> Close</i></a>
+          <app-managepatient></app-managepatient>
+          <app-displaypatients></app-displaypatients>
+        </div>
+      </div>
+  </div>
+

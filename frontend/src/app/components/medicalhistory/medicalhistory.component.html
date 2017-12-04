@@ -1,0 +1,90 @@
+<div class="col-lg-6 col-md-8 col-sm-10 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-1">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">Appointment Report and Medical Report</h3>
+    </div>
+    <div class="panel-body">
+      <form [formGroup]="form" (submit)="onSubmitForm()">
+        <legend>Appointments Information</legend>
+        <div class="form-group">
+          <label for="date">Date and Time</label>
+          <input type="datetime-local" formControlName="date" id="date" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label for="reason">Reason you saw the patient for</label>
+          <textarea rows="4" cols="50" formControlName="reason" id="reason" class="form-control"></textarea>
+        </div>
+        <!--list of symptoms-->
+        <h2 class="page-header">Complete Medical Report</h2>
+        <legend>Which symptoms did the patient had</legend>
+        <div formArrayName="symptoms">
+          <div class="panel panel-info" *ngFor="let symptom of form.controls.symptoms.controls; let i=index">
+            <div class="panel-heading">
+              <span>Symptom {{i + 1}}</span>
+              <span class="glyphicon glyphicon-remove pull-right"
+                    *ngIf="form.controls.symptoms.controls.length >= 1" (click)="removeSymptom(i)"></span>
+            </div>
+            <div class="panel-body" [formGroupName]="i">
+              <app-symptom [group]="form.controls.symptoms.controls[i]"></app-symptom>
+            </div>
+          </div>
+        </div>
+        <div class="margin-20">
+          <a (click)="addSymptom()" style="cursor: default">
+            <span>Add Symptom +</span>
+          </a>
+        </div>
+        <legend>Did you prescribe any medication if yes fill in this section</legend>
+        <!-- list of prescriptions -->
+        <div formArrayName="prescriptions">
+          <div class="panel panel-info"
+               *ngFor="let prescription of form.controls.prescriptions.controls; let i=index">
+            <div class="panel-heading">
+              <span>Prescription {{i + 1}}</span>
+              <span class="glyphicon glyphicon-remove pull-right"
+                    *ngIf="form.controls.prescriptions.controls.length >= 1" (click)="removePrescription(i)">
+                      </span>
+            </div>
+            <div class="panel-body" [formGroupName]="i">
+              <app-prescriptioninput [group]="form.controls.prescriptions.controls[i]"></app-prescriptioninput>
+            </div>
+          </div>
+        </div>
+        <div class="margin-20">
+          <a (click)="addPrescription()" style="cursor: default">
+            <span>Add prescription +</span>
+          </a>
+        </div>
+        <!-- list of medications -->
+        <legend>Is the patient taking any medication if yes fill this section</legend>
+        <div formArrayName="medications">
+          <div class="panel panel-info"
+               *ngFor="let medication of form.controls.medications.controls; let i=index">
+            <div class="panel-heading">
+              <span>Medication {{i + 1}}</span>
+              <span class="glyphicon glyphicon-remove pull-right"
+                    *ngIf="form.controls.medications.controls.length > 1" (click)="removeMedication(i)"></span>
+            </div>
+            <div class="panel-body" [formGroupName]="i">
+              <app-medication [group]="form.controls.medications.controls[i]"></app-medication>
+            </div>
+          </div>
+        </div>
+        <div class="margin-20">
+          <a (click)="addMedication()" style="cursor: default">
+            <span>Add prescription +</span>
+          </a>
+        </div>
+
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-success" value="submit">
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row show-hide-message">
+    <div [ngClass]="messageClass">
+      {{ message }}
+    </div>
+  </div>
+</div>

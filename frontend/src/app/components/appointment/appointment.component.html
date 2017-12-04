@@ -1,0 +1,101 @@
+ <div class="col-lg-4 col-md-4 col-sm-4">
+      <div class="show-hide-message">
+        <div [ngClass]="messageClass">
+          {{ message }}
+        </div>
+      </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">My Appointments <span class="badge">
+          {{listofMyAppointments.length}}
+        </span></h3>
+          </div>
+          <div class="panel-body">
+            <li class="list-group-item" *ngFor="let appointment of listofMyAppointments">
+              <h6>Here are the details of your appointment</h6>
+              <p><strong>Date:</strong>{{renderDate(appointment.date)}}</p>
+              <p><strong>Time:</strong>{{renderTime(appointment.date)}}</p>
+              <p><strong>Doctor:</strong>{{appointment.doctor.first_name}} {{appointment.doctor.last_name}}</p>
+              <a routerLink="/cancel-appointment/{{appointment._id}}">
+                <span><i class="fa fa-trash-o"> Cancel Appointment</i></span>
+              </a>
+            </li>
+          </div>
+        </div>
+ </div>
+    <!--<div class="col-lg-5 col-md-5 col-sm-12">
+      <div class="row">
+        <form class="form-inline" role="search" [formGroup]="form" (submit)="onSubmitSearch()">
+          <label class="radio-inline"><input type="radio" value="name"
+                                             formControlName="searchPreference" name="searchPreference">
+            Search By name
+          </label>
+          <label class="radio-inline"><input type="radio" value="category"
+                                             formControlName="searchPreference" name="searchPreference">
+            Search by category
+          </label>
+          <input type="text" class="form-control" placeholder="search"
+                 id="search" formControlName="search" name="search">
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>
+      </div>
+      <div class="row">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">How to book an appointment?</h3>
+            <p>There are 2 ways to book an appointment</p>
+            <p>1. You can search for a specific doctor a book an appointment</p>
+            <p>
+              2. You can search doctors by category and book appointment with any
+              available doctor in that category
+            </p>
+          </div>
+          <div class="panel-body">
+            <div *ngFor="let doctor of listofDoctors">
+              <li class="list-group-item">
+                <div>
+                  <h4>{{doctor.category}}</h4>
+                  <i>{{doctor.position}}</i> {{doctor.first_name}} {{doctor.middle_name}}
+                  {{doctor.last_name}}
+                </div>
+                <div>
+                  <a routerLink="booking/{{doctor._id}}">Book Appointment</a>
+                </div>
+              </li>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>-->
+
+
+ <div class="col-lg-8 col-md-8 col-sm-12">
+   <p-orderList
+     [value]="listofDoctors"
+     [listStyle]="{'height':'500px'}"
+     header="List of Doctors"
+     [responsive]="true"
+     filter="filter"
+     filterBy="first_name,last_name"
+     filterPlaceholder = "Filer By Name">
+     <ng-template let-doctor pTemplate="item">
+       <div class="ui-helper-clearfix" style="border: 1px solid whitesmoke;
+            border-radius: 2%; margin: 1%; padding: 1%">
+         <div>
+           {{doctor.position}} {{doctor.first_name}} {{doctor.last_name}}<br/>
+           Specialities<br/>
+           <ul *ngFor="let speciality of doctor.medicalSpecialities">
+             <li>{{speciality.name}}</li>
+           </ul>
+         </div>
+         <div>
+           <a routerLink="booking/{{doctor._id}}">
+               <span style="color: black"><i class="fa fa-user-plus">
+                 Book Appointment with Dr {{doctor.first_name}}</i>
+               </span>
+           </a>
+         </div>
+       </div>
+     </ng-template>
+   </p-orderList>
+ </div>

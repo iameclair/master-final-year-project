@@ -1,0 +1,16 @@
+body{
+  text-align: left;
+}
+.left-section{
+  padding: 1%;
+  margin: 1%;
+}
+.right-section{
+  padding: 1%;
+  background-color: black;
+  color: #A89447;
+}
+.list-group-item{
+  margin: 1%;
+  color: #A89447;
+}

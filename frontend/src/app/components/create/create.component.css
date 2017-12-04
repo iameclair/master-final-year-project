@@ -1,0 +1,19 @@
+.center {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.form-item {
+  margin: 4px 0px;
+}
+.fade.in{
+  opacity: 1;
+}
+.modal.in .modal-dialog{
+  -webkit-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+.modal-backdrop.in {
+  opacity: 0.5;
+}

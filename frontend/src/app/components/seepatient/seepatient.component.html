@@ -1,0 +1,175 @@
+<div class="row">
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Personal Information</h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+          <div class="avatar-profile thumbnail">
+            <img src="../../../assets/images/avatar.png" alt="" style="width: 12em; height: 12em">
+          </div>
+          <a>upload picture</a>
+        </div>
+        <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
+          <div class="table-responsive">
+            <table class="table table-striped table-condensed">
+              <tbody>
+              <tr>
+                <th scope="row">Name:</th><td>{{ first_name }} {{ middle_name }} {{ last_name }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Birth Date:</th><td>{{ dob }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Age:</th><td>{{ age }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Gender:</th><td>{{ gender }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Height:</th><td>{{ height }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Weight:</th><td>{{ weight }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Country of Birth:</th><td>{{ country_birth }}</td>
+              </tr>
+              <tr>
+                <th scope="row">NHS Number:</th><td>{{ nhsnumber }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Contact Information</h3>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-condensed">
+            <tbody>
+            <tr>
+              <th scope="row">Primary contact Number:</th><td>{{phone_number}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Address line1:</th><td>{{ address_line1 }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Address line2:</th><td>{{ address_line2 }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Postcode: </th><td>{{ postcode }}</td>
+            </tr>
+            <tr>
+              <th scope="row">City:</th><td> {{ city }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Country of Residence: </th><td>{{ country_of_residence }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Emergency Information</h3>
+      </div>
+      <div class="panel-body">
+        <div>
+          <div class="table-responsive">
+            <table class="table table-striped table-condensed">
+              <tbody>
+              <tr><th scope="row" colspan="2">Primary Emergency Information</th></tr>
+              <tr>
+                <th scope="row">Name:</th><td>{{ emergency_name }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Phone Number:</th><td>{{ emergency_phone }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Relationship to the Patient:</th><td>{{ emergency_relationship }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Residence address: </th><td>{{ emergency_address }}</td>
+              </tr>
+              </tbody>
+            </table>
+            <table class="table table-striped table-condensed" *ngIf="emergency_name2 !== ''">
+              <tbody>
+              <tr><th scope="row" colspan="2">Secondary Emergency Information</th></tr>
+              <tr>
+                <th scope="row">Name:</th><td>{{ emergency_name2 }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Phone Number:</th><td>{{ emergency_phone2 }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Relationship to the Patient:</th><td>{{ emergency_relationship2 }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Residence address: </th><td>{{ emergency_address2 }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Medical History</h3>
+      </div>
+      <div class="panel-body">
+        <div *ngFor="let appointment of listOfMedicalHistory">
+          <table class="table table-striped table-condensed">
+            <tbody>
+            <tr><th scope="row" colspan="2">Medical Report</th></tr>
+            <tr>
+              <th scope="row">Date:</th><td>{{renderDate(appointment.date)}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Time:</th><td>{{renderTime(appointment.date)}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Reason:</th><td>{{appointment.reason}}</td>
+            </tr>
+            </tbody>
+          </table>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let symptom of appointment.symptoms; let i=index">
+              <legend>Symptom {{i+1}}</legend>
+              <p class="list-item-text">Symptom name: {{symptom.name}}</p>
+              <p class="list-item-text">Symptom Description: {{symptom.description}}</p>
+            </li>
+            <li class="list-group-item" *ngFor="let prescription of appointment.prescriptions; let i=index">
+              <legend>Prescription {{i+1}}</legend>
+              <p class="list-item-text">Prescription name: {{prescription.name}}</p>
+              <p class="list-item-text">Instructions: {{prescription.instruction}}</p>
+            </li>
+            <li class="list-group-item" *ngFor="let medication of appointment.medications; let i=index">
+              <legend>Medication {{i+1}}</legend>
+              <p class="list-item-text">Medicine Nane: {{medication.name}}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,177 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Menu</h3>
+        </div>
+        <div class="panel-body">
+          <div class="btn-group-vertical">
+            <li class="btn btn-default"><a data-toggle="collapse" style="cursor: pointer">My Appointments</a>
+              <span class="badge">{{listOfMyAppointments.length}}</span></li>
+            <li class="btn btn-default"><a style="cursor:pointer" data-toggle="collapse" href="#rModal">Message Received</a>
+              <span class="badge">{{listOfMessageReceived.length}}</span></li>
+            <li class="btn btn-default"><a style="cursor:pointer" data-toggle="collapse" href="#sModal">Message Sent</a>
+              <span class="badge">{{listOfMessageSent.length}}</span></li>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">My Details</h3>
+        </div>
+        <div class="panel-body">
+          <div class="avatar-profile thumbnail">
+            <img src="../../../assets/images/{{avatar}}" alt="" style="width: 12em; height: 12em">
+            <div><a class="btn btn-link" routerLink="/avatar">
+              <span><i class="fa fa-upload"> Upload a picture</i></span>
+            </a></div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item">Name: <strong>{{position}} {{firstName}} {{lastName}}</strong></li>
+            <h6>Speciality(ies):</h6>
+            <div *ngFor="let speciality of category">
+              <li class="list-group-item"> <strong>{{speciality.name}}</strong></li>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 main-section">
+      <!--appointment-->
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">My Appointments</h3>
+        </div>
+        <div class="panel-body">
+          <li class="list-group-item" *ngFor="let appointment of listOfMyAppointments; let i=index">
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse{{i+1}}">View Appointment {{i+1}} details</a>
+                  </h4>
+                </div>
+                <div id="collapse{{i+1}}" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <legend>Appointment Details</legend>
+                        <strong>Date :</strong>{{renderDate(appointment.date)}} <br />
+                        <strong>Time:</strong> {{renderTime(appointment.date)}}
+                        <br /> <br /><legend>Patient Details</legend>
+                        {{appointment.patient.first_name}} {{appointment.patient.last_name}}
+                        <br/>{{appointment.patient.email}}<br/>
+                        <a routerLink="/view-patient-details/{{appointment.patient._id}}" class="btn btn-link">
+                          <span><i class="fa fa-address-card"> See patient details</i></span></a>
+                        <a routerLink="/report-and-medical-history/{{appointment.patient._id}}/{{appointment._id}}">
+                          <span><i class="fa fa-comment"> Make appointment Report</i></span></a>
+                        <a routerLink="/contact-user/{{appointment.patient._id}}" class="btn btn-link">
+                          <span><i class="fa fa-envelope-o"> Contact Patient</i></span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </div>
+      </div>
+
+      <!--Mesage sents-->
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" href="#rModal">Message Received</a>
+              <span class="badge"></span>
+            </h4>
+          </div>
+          <div id="rModal" class="panel-collapse collapse">
+            <div class="panel-body">
+              <p-dataList [value]="listOfMessageReceived" [paginator]="true" [rows]="1">
+                <ng-template let-mr pTemplate="item">
+                  <a class="list-group-item">
+                    <p class="list-group-item-heading"><span><i class="fa fa-address-card-o" style="color: royalblue">
+                    from: {{mr.from}}
+                  </i></span> </p>
+                    <p class="list-group-item-heading"><span><i class="fa fa-address-card-o" style="color: royalblue">
+                    to: {{mr.to}}
+                  </i></span> </p>
+                    <p class="list-group-item-heading"> <span><i class="fa fa-tag" style="font-weight: bold">
+                    Subject
+                  </i></span> {{mr.subject}}</p>
+                    <div class="modal-body">
+                      <p> {{mr.content}}</p>
+                    </div>
+                    <div class="modal-footer">
+                      <a class="btn btn-link">
+                        <span><i class="fa fa-trash-o" aria-hidden="true"> Delete</i></span>
+                      </a>
+                    </div>
+                  </a>
+                </ng-template>
+              </p-dataList>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Message sent -->
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" href="#sModal">Message Sent</a>
+              <span class="badge"></span>
+            </h4>
+          </div>
+          <div id="sModal" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="list-group">
+                <p-dataList [value]="listOfMessageSent" [paginator]="true" [rows]="1">
+                  <ng-template let-ms pTemplate="item">
+                    <a class="list-group-item">
+                      <p class="list-group-item-heading"><span><i class="fa fa-address-card-o" style="color: royalblue">
+                    from: {{ms.from}}
+                  </i></span> </p>
+                      <p class="list-group-item-heading"><span><i class="fa fa-address-card-o" style="color: royalblue">
+                    to: {{ms.to}}
+                  </i></span> </p>
+                      <p class="list-group-item-heading"> <span><i class="fa fa-tag" style="font-weight: bold">
+                    Subject
+                  </i></span> {{ms.subject}}</p>
+                      <div class="modal-body">
+                        <p> {{ms.content}}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <a class="btn btn-link">
+                          <span><i class="fa fa-trash-o" aria-hidden="true"> Delete</i></span>
+                        </a>
+                      </div>
+                    </a>
+                  </ng-template>
+                </p-dataList>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!--calendar-->
+    <div class="col-lg-5 col-md-5 col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Create Timetable</h3>
+        </div>
+        <div class="panel-body">
+          <app-timetable></app-timetable>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

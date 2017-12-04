@@ -1,0 +1,30 @@
+.intro-section{
+  background-color: black;
+  padding: 1%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
+  color: #A89447;
+}
+.account_section{
+  padding: 1%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
+  color: black;
+}
+img{
+  display: block;
+  margin: auto;
+}
+.registration-block{
+  margin: 1%;
+  margin-bottom: 3%;
+  padding: 1%;
+}
+
+.login-block{
+  margin: 1%;
+  margin-bottom: 3%;
+  padding: 1%;
+}

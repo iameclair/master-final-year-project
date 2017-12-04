@@ -1,0 +1,47 @@
+<div class="col-lg-6 col-md-6 col-sm-12 col-lg-offset-3 col-md-offset-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Send Email</h3>
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" [formGroup]="mailForm" (submit)="sendEmail()">
+        <fieldset>
+          <div class="form-group">
+            <div class="input-group col-lg-8 col-md-8 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-1">
+          <span class="input-group-addon">
+            to *
+           </span>
+              <input
+                type="text" class="form-control" id="to" [(ngModel)]="to" formControlName="to"
+                value="email"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group col-lg-8 col-md-8 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-1">
+          <span class="input-group-addon">
+            Subject *
+           </span>
+              <input type="text" class="form-control" id="subject" placeholder="subject"
+                     formControlName="subject"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-8 col-md-8 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-1">
+              <textarea rows="10" cols="10" class="form-control" formControlName="content"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" [disabled]="!mailForm.valid || processing">
+                <span><i class="fa fa-envelope"></i> Send</span></button>
+              <button type="reset" class="btn btn-danger"><span><i class="fa fa-times-circle"> Cancel</i></span></button>
+              <div [ngClass]="messageClass" style="margin-top: 2%">
+                {{message}}
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

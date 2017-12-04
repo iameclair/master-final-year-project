@@ -1,0 +1,125 @@
+<div class="col-lg-6 col-md-6 col-sm-12 form-container">
+  <div [ngClass]="messageClass">
+    {{message}}
+  </div>
+  <!--form-->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Register Any Repeating Prescription For Notification Reminders</h3>
+    </div>
+    <div class="panel-body">
+      <form [formGroup]="form" (submit)="onSubmitSetReminder()">
+        <div class="form-group">
+          <div class="col-lg-6">
+            <div class="panel panel-default">
+              <div class="panel panel-heading">
+                <h6 class="panel-title">Doctor's Name *:</h6>
+              </div>
+              <div class="panel-body">
+                <input type="text" placeholder="Doctor's name" class="form-control"
+                       formControlName="drName"/>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="panel panel-default">
+              <div class="panel panel-heading">
+                <h6 class="panel-title">Patient's Name *:</h6>
+              </div>
+              <div class="panel-body">
+                <input type="text" placeholder="Patient's name" class="form-control"
+                                             formControlName="pName"/>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-4">
+            <div class="panel panel-default">
+              <div class="panel panel-heading">
+                <h6 class="panel-title">Patient Email *:</h6>
+              </div>
+              <div class="panel-body">
+                  <input type="email" placeholder="email address" class="form-control"
+                   formControlName="pEmail"/>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="panel panel-default">
+              <div class="panel panel-heading">
+                <h6 class="panel-title">Patient Phone number:</h6>
+              </div>
+              <div class="panel-body">
+            <input type="email" placeholder="phone number" class="form-control"
+                   formControlName="pPhone"/>
+                <div>
+                  <h6>Activate sms</h6>
+                  <p-inputSwitch onLabel="Yes" offLabel="No" formControlName="check"></p-inputSwitch>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="panel panel-default">
+              <div class="panel panel-heading">
+                <h6 class="panel-title">Prescription name *:</h6>
+              </div>
+              <div class="panel-body">
+            <input type="text" placeholder="Prescription's name" class="form-control"
+                   formControlName="prescName"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-6">
+          <label>Date of refill:</label>
+          <p-calendar formControlName="refillDate" [inline]="true" [showTime]="false" [showSeconds]="true">
+          </p-calendar>
+          </div>
+          <div class="col-lg-6">
+            <label>Date and Time of reminder:</label>
+            <p-calendar formControlName="reminderStart" [inline]="true" [showTime]="true" [showSeconds]="true">
+            </p-calendar>
+          </div>
+        </div>
+            <input type="submit" class="btn btn-primary form-control" value="Set Prescription Reminder">
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-6 col-md-6 col-sm-8">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Prescription Reminder</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group" *ngFor="let pres of listOfPrescriptions">
+        <li class="list-group-item">
+          <p>Prescribed by : <strong>Dr {{pres.doctor}}</strong></p>
+          <p>Prescribed for : <strong>{{pres.patient}}</strong></p>
+          <p>Prescription name : <strong>{{pres.pres_name}}</strong></p>
+          <p>Prescription refill date : <strong>{{renderDate(pres.refill)}}</strong></p>
+          <p>Reminder Set date : <strong>{{renderDate(pres.startReminder)}} at {{renderTime(pres.startReminder)}}</strong></p>
+          <p><a class="btn btn-link" (click)="toggleInput()">
+            <i class="fa fa-edit">reset reminder's date and time</i>
+          </a>
+            <p-calendar
+              [disabled]="disabled"
+              [showIcon]="true"
+              [showTime]="true"
+              [showSeconds]="true"
+              [(ngModel)]="newReminder">
+            </p-calendar>
+          </p>
+          <p *ngIf="newReminder">{{renderDate(newReminder)}} {{renderTime(newReminder)}}</p>
+          <p *ngIf="newReminder"><a class="btn btn-link" (click)="resetReminder(pres._id)">reset</a></p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

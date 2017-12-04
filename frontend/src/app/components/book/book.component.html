@@ -1,0 +1,21 @@
+<div class="col-lg-6 col-lg-offset-3">
+  <div class="row show-hide-message">
+    <div [ngClass]="messageClass">
+      {{ message }}
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Booking</h3>
+    </div>
+    <div class="panel-body">
+      <h6>Date: {{renderDate(appointmentDate)}}</h6>
+      <h6>Time: {{renderTime(appointmentTime)}}</h6>
+      <form [formGroup]="form" (submit)="onSubmit()">
+        <label for="reason">Reason for booking the appointment:</label>
+        <textarea class="form-control" rows="10" id="reason" formControlName="reason"></textarea> <br />
+        <input [disabled]="!form.valid" type="submit" class="btn btn-success" value="Book">
+      </form>
+    </div>
+  </div>
+</div>

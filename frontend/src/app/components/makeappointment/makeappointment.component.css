@@ -1,0 +1,45 @@
+.col-centered{
+  margin-top: 5%;
+}
+.header{
+  text-align: center;
+  padding: 1%;
+  margin-bottom: 5%;
+  color: black;
+}
+.submit-section{
+  padding: 2%;
+  margin-top: 2%;
+}
+.btn-success{
+  margin-right: 5%;
+  background-color: green;
+  color: white;
+  font-size: larger;
+}
+.jumbotron{
+  padding: 2%;
+  background: rgba(147,206,222,1);
+  background: -moz-linear-gradient(-45deg, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(147,206,222,1)), color-stop(41%, rgba(117,189,209,1)), color-stop(100%, rgba(73,165,191,1)));
+  background: -webkit-linear-gradient(-45deg, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  background: linear-gradient(135deg, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#49a5bf', GradientType=1 );
+}
+label{
+  font-size: larger;
+  color: black;
+}
+.forgot-link{
+  text-align: right;
+  padding-right: 5%;
+  padding-top: 2%;
+}
+.forgot-link>a{
+  color: black;
+}
+.row{
+  margin: 1%;
+}

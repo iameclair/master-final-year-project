@@ -1,0 +1,61 @@
+<!-- Fixed navbar -->
+ <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand brand-font" routerLink="/home">
+          <img src="../../../assets/images/gpassistance.png" alt="site logo" style="height: 100%">
+        </a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li routerLinkActive="active" routerLinkActiveOptions="{exact:true}" p-patient>
+            <a routerLink="/gpassistant">Home</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li *ngIf="authService.loggedIn()" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact:true}" p-patient>
+            <a routerLink="/details">Personal Details</a>
+          </li>
+          <li *ngIf="authService.loggedIn()"  routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact:true}" p-patient>
+            <a routerLink="/appointment">Appointments</a>
+          </li>
+          <li *ngIf="authService.loggedIn()" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact:true}" p-patient>
+            <a routerLink="/prescription">Prescription Management</a>
+          </li >
+          <li *ngIf="(authService.loggedIn())"  routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact:true}" p-patient>
+            <a routerLink="/contact_doctor">Contact Doctor</a>
+          </li >
+          <li *ngIf="(authService.loggedIn())" p-admin
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact:true}">
+            <a routerLink="/management">Admin Portal</a>
+          </li>
+          <li p-staff *ngIf="authService.loggedIn()"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact:true}">
+            <a routerLink="/staff">Staff Portal</a>
+          </li>
+          <li *ngIf="!authService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <a routerLink="/login">Login</a>
+          </li>
+          <li *ngIf="!authService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <a routerLink="/register">Register</a>
+          </li>
+          <li *ngIf="authService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <a href="#" (click)="onLogoutClick()">Logout</a>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+

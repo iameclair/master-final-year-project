@@ -1,0 +1,12 @@
+img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.footer{
+  height: 30%;
+  background-color: black;
+  padding: 1%;
+  color: #A89447;
+  margin-top: 3%;
+}

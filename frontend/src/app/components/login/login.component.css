@@ -1,0 +1,37 @@
+.col-centered{
+  margin-top: 5%;
+}
+.header{
+  text-align: center;
+  padding: 1%;
+  margin-bottom: 5%;
+  color: #A89447;
+}
+.submit-section{
+  padding: 2%;
+  margin-top: 2%;
+}
+.btn-success{
+  margin-right: 5%;
+  background-color: goldenrod;
+  color: black;
+  font-size: larger;
+  border: goldenrod solid;
+}
+
+label{
+  font-size: larger;
+  color: #A89447
+}
+.forgot-link>a{
+  margin-top: 1%;
+  color: #A89447;
+  display: block;
+  width: 85%;
+  text-align: right;
+}
+
+.form-container{
+  background-color: black;
+  padding: 1%;
+}

@@ -56,7 +56,7 @@ app.use('/contact', contact);
  connect server to angular
  ===================================================================*/
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/dist/index.html'));
+    res.sendFile(path.join(__dirname + '/frontend/dist/index.html'));
 });
 
 /*==================================================================

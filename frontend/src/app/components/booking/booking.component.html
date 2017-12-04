@@ -1,0 +1,79 @@
+<!--
+<div class="row">
+  <div class="row show-hide-message">
+    <div [ngClass]="messageClass">
+      {{ message }}
+    </div>
+  </div>
+  <form class="form-inline" [formGroup]="form" (submit)="onSubmitSearch()">
+    <label class="">Search for available appointments</label>
+    <div class="input-group">
+      <input type="date" class="form-control col-lg-2" placeholder="Date" name="date" formControlName="date"/>
+      <span class="input-group-addon" id="basic-addon1">
+        <span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+    <input type="submit" class="btn btn-primary" value="check availability">
+  </form>
+</div>
+<div class="row">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">List Available Appointments for doctor {{doctorName}}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="list-group" *ngFor="let appointment of listOfAppointments">
+
+        <li class="list-group-item">
+          &lt;!&ndash;<h6>Month: {{appointment.month}} </h6>&ndash;&gt;
+          <h6>Date: {{renderDate(appointment.date)}}</h6>
+          &lt;!&ndash;<p>Day: {{appointment.day}}</p>&ndash;&gt;
+          <h6>Time: {{renderTime(appointment.date)}}</h6>
+          <h6>Doctor: {{doctorName}}</h6>
+          <a class="btn btn-success" routerLink="../../book/{{appointment._id}}">
+            Available click here to book</a>
+        </li>
+
+      </div>
+    </div>
+  </div>
+</div>
+-->
+<div class="col-lg-4 col-md-4 col-sm-12">
+  <h3 style="color:black; margin-bottom: 1%">Search Availability</h3>
+  <form [formGroup]="form" (submit)="onSubmitFindAvailable()">
+    <fieldset>
+     <div class="form-group">
+        <label>Select date and Time of Appointment</label>
+        <input type="datetime-local" formControlName="date" class="form-control">
+        <!--<p-calendar
+          [inline]="true"
+          [showTime]="true"
+          formControlName="date"
+          [showSeconds]="true"
+        >
+        </p-calendar>-->
+      </div>
+      <input type="submit" [disabled]="!form.valid" class="btn btn-primary" value="Submit"/>
+    </fieldset>
+  </form>
+</div>
+<div class="col-lg-8 col-md-8 col-sm-12">
+  <p-dataGrid [value]="listOfAppointments" [paginator]="true" [rows]="12">
+    <p-header>
+      Available Appointments
+    </p-header>
+    <ng-template let-appointment pTemplate="item">
+      <div style="padding: 3px" class="ui-g-12 ui-md-3">
+        <p-panel [header]="renderDate(appointment.date)">
+          Time: {{renderTime(appointment.date)}}<br/>
+          Doctor: {{doctorName}}
+          <hr class="ui-widget-content" style="border-top:0">
+          <a class="btn btn-success" routerLink="../../book/{{appointment._id}}">
+            <i class="fa fa-check-circle" style="cursor: pointer;"> Book</i></a>
+        </p-panel>
+      </div>
+    </ng-template>
+  </p-dataGrid>
+</div>
+
